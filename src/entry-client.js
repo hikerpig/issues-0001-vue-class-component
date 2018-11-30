@@ -11,16 +11,23 @@ import Bluebird from 'bluebird'
 import { addUnhandledrejectionListener } from 'src/util/rejection'
 import { last } from 'lodash'
 
+/**
+ * Global Vue mixin
+ */
+Vue.mixin({
+  beforeRouteUpdate(to, from, next) {
+    console.log('hi! beforeRouteUpdate!', this._uid)
+  },
+})
+
 Vue.config.performance = !isProduction
 Vue.config.devtools = !isProduction
 
-// Bluebird
 Bluebird.config({
   warnings: false,
 })
 addUnhandledrejectionListener()
 
-// global progress bar
 const bar = (Vue.prototype.$bar = new Vue(PageProgressBar).$mount())
 document.body.appendChild(bar.$el)
 
@@ -40,17 +47,13 @@ if (window.__INITIAL_STATE__) {
 
 const { app, router, store } = createApp()
 
-hostGlobal.store = store // for debug
+hostGlobal.store = store
 
-// prime the store with server-initialized state.
-// the state is determined during SSR and inlined in the page markup.
 if (window.__INITIAL_STATE__) {
   console.log('replace initial state')
   store.replaceState(window.__INITIAL_STATE__)
 }
 
-// wait until router has resolved all async before hooks
-// and async components...
 router.onReady(initialRoute => {
   const initialMatched = router.getMatchedComponents(initialRoute)
   console.log('initialMatched', initialMatched)
@@ -94,9 +97,7 @@ router.onReady(initialRoute => {
       .catch(next)
   })
 
-
-  router.afterEach(to => {
-  })
+  router.afterEach(to => {})
 
   app.$mount('#app')
 })
