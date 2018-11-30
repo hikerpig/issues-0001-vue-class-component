@@ -15,8 +15,8 @@ import { last } from 'lodash'
  * Global Vue mixin
  */
 Vue.mixin({
-  beforeRouteUpdate(to, from, next) {
-    console.log('hi! beforeRouteUpdate!', this._uid)
+  mounted() {
+    console.log("Hi! I'm mounted!", this._uid, this._vnode.tag)
   },
 })
 

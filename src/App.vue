@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    this.$options.beforeRouteUpdate.length = {{length}}
+    this.$options.mounted.length = {{length}}
   </div>
 </template>
 
@@ -14,10 +14,11 @@ import PrepareMixin2 from 'src/components/mixins/PrepareMixin2.vue'
 import { PrepareMixin3, PrepareMixin4 } from 'src/util/prepareMixins'
 
 @Component
-export default class AppPage extends mixins(PrepareMixin3, PrepareMixin4) {
+export default class AppPage extends mixins(PrepareMixin1, PrepareMixin2) {
   length = 0
   mounted() {
-    this.length = this.$options.beforeRouteUpdate.length
+    this.length = this.$options.mounted.length
+    console.log("I'm AppPage")
   }
 }
 </script>

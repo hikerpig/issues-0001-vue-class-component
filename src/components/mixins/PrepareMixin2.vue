@@ -1,4 +1,5 @@
 <template>
+<div class="component-2"></div>
 </template>
 
 <script lang="ts">
