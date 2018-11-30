@@ -1,0 +1,4 @@
+{
+  "entry": "./build.config.ts",
+  "output": "./dist/config"
+}

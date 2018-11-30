@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+.idea
+*.iml
+
+.tmp/
+
+build/manifests/
+.vscode/launch.json
+
+coverage/
+tests/data-compare
+
+.build/
